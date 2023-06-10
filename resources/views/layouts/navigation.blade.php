@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center justify-center">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img class="block h-9 w-auto fill-current" src="{{ asset('storage/icon/android-chrome-192x192.png') }}" alt="icon">
                     </a>
                 </div>
 
