@@ -1,17 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-bold text-3xl mt-2 mb-3">
             Latest Posts
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden sm:rounded-lg">
-                <div class="p-6 ">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <x-card/>
+        <x-card/>
+        <x-card/>
+        <x-card/>
+        <x-card/>
     </div>
 </x-app-layout>

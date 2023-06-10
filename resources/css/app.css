@@ -1,3 +1,14 @@
+/* tailwind tailwind.config.js에서 정의한 요소를 CSS에 적용하기 위한 부분 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 카드 마우스 오버 커지는 확대효과 */
+.hover\:grow {
+    transition: all 0.3s;
+    transform: scale(1);
+}
+
+.hover\:grow:hover {
+    transform: scale(1.02);
+}
