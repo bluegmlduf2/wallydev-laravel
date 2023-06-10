@@ -12,17 +12,21 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- 구글 폰트 -->
+    <!-- Icon -->
+    <link rel="shortcut icon" href="{{ asset('storage/icon/favicon-32x32.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('storage/icon/favicon-32x32.png') }}" type="image/x-icon">
+
+    <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <style>
     body {
-        /* 구글폰트 */
+        /* Google font */
         font-family: "Nanum Gothic", sans-serif !important;
     }
 </style>

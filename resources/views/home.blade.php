@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-bold text-3xl mt-2 mb-3">
+        <h2 class="font-bold text-3xl mt-2 mb-4 md:my-7">
             Latest Posts
         </h2>
     </x-slot>

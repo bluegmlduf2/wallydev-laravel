@@ -17,6 +17,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+Route::get('/javascript', function () {
+    return view('javascript');
+})->name('javascript');
+Route::get('/php', function () {
+    return view('php');
+})->name('php');
+Route::get('/vuejs', function () {
+    return view('vuejs');
+})->name('vuejs');
+Route::get('/others', function () {
+    return view('others');
+})->name('others');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/life', function () {
+    return view('life');
+})->name('life');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

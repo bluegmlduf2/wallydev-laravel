@@ -1,12 +1,13 @@
 <nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
     <div>
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-10 mt-3">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center justify-center">
                     <a href="{{ route('home') }}">
-                        <img class="block h-9 w-auto fill-current" src="{{ asset('storage/icon/android-chrome-192x192.png') }}" alt="icon">
+                        <img class="block h-9 w-auto fill-current"
+                            src="{{ asset('storage/icon/android-chrome-192x192.png') }}" alt="icon">
                     </a>
                 </div>
 
@@ -15,12 +16,30 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('HOME') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('javascript')" :active="request()->routeIs('javascript')">
+                        {{ __('JAVASCRIPT') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('php')" :active="request()->routeIs('php')">
+                        {{ __('PHP') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('vuejs')" :active="request()->routeIs('vuejs')">
+                        {{ __('VUEJS') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('others')" :active="request()->routeIs('others')">
+                        {{ __('OTHERS') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('life')">
+                        {{ __('LIFE') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('ABOUT') }}
+                    </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            @auth
-                <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @auth
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -56,8 +75,12 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
-                </div>
-            @endauth
+                @else
+                    <x-nav-link :active="null" class="font-normal border-none">
+                        {{ __('LOGIN') }}
+                    </x-nav-link>
+                @endauth
+            </div>
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -79,7 +102,25 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Dashboard') }}
+                {{ __('HOME') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('javascript')" :active="request()->routeIs('javascript')">
+                {{ __('JAVASCRIPT') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('php')" :active="request()->routeIs('php')">
+                {{ __('PHP') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('vuejs')" :active="request()->routeIs('vuejs')">
+                {{ __('VUEJS') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('others')" :active="request()->routeIs('others')">
+                {{ __('OTHERS') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('life')">
+                {{ __('LIFE') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                {{ __('ABOUT') }}
             </x-responsive-nav-link>
         </div>
 
@@ -109,7 +150,11 @@
                         </x-responsive-nav-link>
                     </form>
                 </div>
-            </div>
-        @endauth
+            @else
+                <x-responsive-nav-link :active="null" class="font-normal border-none">
+                    {{ __('LOGIN') }}
+                </x-responsive-nav-link>
+            @endauth
+        </div>
     </div>
 </nav>

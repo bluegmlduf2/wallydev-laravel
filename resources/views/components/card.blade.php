@@ -5,7 +5,7 @@
             alt="">
     </div>
     <div class="p-4 bg-white flex flex-col min-h-275">
-        <h4 class="text-xl font-black">Why is the Tesla Cybertruck designed the way it is?</h4>
+        <h4 class="text-xl font-bold">Why is the Tesla Cybertruck designed the way it is?</h4>
         <p class="text-sm my-3">Numquam nemo magni temporibus quo reiciendis minima nostrum voluptas deserunt obcaecati
             exercitationem?</p>
         <div>
