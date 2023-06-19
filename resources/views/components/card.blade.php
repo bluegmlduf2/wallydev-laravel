@@ -1,10 +1,9 @@
-{{-- <a href="{{ route('posts.show', ['post' => 1]) }}"> --}}
 <a href="#">
-    <div class="rounded-lg overflow-hidden shadow-lg hover:grow hover:shadow-lg">
+    <div class="rounded-lg overflow-hidden shadow-lg hover:grow hover:shadow-lg h-full">
         <div class="w-full h-64">
             <img class="w-full h-full bg-center" src={{ $post['imageUrl'] }} alt="postimage">
         </div>
-        <div class="p-4 bg-white flex flex-col min-h-275">
+        <div class="p-4 bg-white flex flex-col">
             <h4 class="text-xl font-bold truncate">{{ $post['title'] }}</h4>
             <p class="text-sm my-3 line-clamp-3">{{ $post['content'] }}</p>
             <div>
