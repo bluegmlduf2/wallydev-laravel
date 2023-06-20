@@ -1,0 +1,113 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Post;
+
+class PostController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        // 페이지타입
+        $category = $request->segment(1);
+
+        $query = Post::query();
+
+        // 카테고리 검색조건 설정
+        if (in_array($category, ['javascript', 'php', 'vuejs', 'others'])) {
+            $query->where('category', $category);
+        } elseif ($category === 'life') {
+            $query->whereIn('category', ['food', 'today']);
+        }
+
+        // TODO 페이지네이션
+        $posts = $query->paginate(12);
+
+        // TODO 모델안에 넣기..
+        foreach ($posts as $post) {
+            $content = $post->content;
+
+            // 이미지태그가 글에 존재할 경우, 첫번째 img태그의 url을 저장함
+            if (preg_match('/<img [^>]*src="[^"]*"[^>]*>/', $content, $matches)) {
+                $post->imageUrl = preg_replace('/.*src="([^"]*)".*/', '$1', $matches[0]);
+            }
+
+            // HTML태그제거후 HTML엔터티도 제거후,첫 100글자만 저장
+            $post->content = mb_substr(html_entity_decode(strip_tags($content)), 0, 150);
+        }
+
+        return view('home', compact('posts'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

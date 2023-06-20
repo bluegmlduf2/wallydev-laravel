@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,25 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
-Route::get('/javascript', function () {
-    return view('javascript');
-})->name('javascript');
-Route::get('/php', function () {
-    return view('php');
-})->name('php');
-Route::get('/vuejs', function () {
-    return view('vuejs');
-})->name('vuejs');
-Route::get('/others', function () {
-    return view('others');
-})->name('others');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-Route::get('/life', function () {
-    return view('life');
-})->name('life');
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/javascript', [PostController::class, 'index'])->name('javascript');
+Route::get('/php', [PostController::class, 'index'])->name('php');
+Route::get('/vuejs', [PostController::class, 'index'])->name('vuejs');
+Route::get('/others', [PostController::class, 'index'])->name('others');
+Route::get('/life', [PostController::class, 'index'])->name('life');
+Route::view('/about', 'about')->name('about');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
