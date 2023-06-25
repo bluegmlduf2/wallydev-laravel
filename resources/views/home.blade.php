@@ -10,4 +10,7 @@
             <x-card :post="$post" />
         @endforeach
     </div>
+    <div class="flex justify-center pt-5">
+        {{ $posts->links() }}
+    </div>
 </x-app-layout>
