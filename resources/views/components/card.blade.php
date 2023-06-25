@@ -1,4 +1,4 @@
-<a href="#">
+<a href="/posts/{{ $post }}">
     <div class="rounded-lg overflow-hidden shadow-lg hover:grow hover:shadow-lg h-full">
         <div class="w-full h-64">
             <img class="w-full h-full bg-center bg-gray-200"

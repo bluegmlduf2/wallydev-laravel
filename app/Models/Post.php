@@ -10,6 +10,12 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+    
+    protected $primaryKey = 'postId';
+
+    public $incrementing = false;
+
     protected $fillable = [
         'postId',
         'writerUid',
@@ -20,8 +26,6 @@ class Post extends Model
         'category',
     ];
 
-    protected $primaryKey = ['postId', 'writerUid'];
-    public $incrementing = false;
 
     protected function content(): Attribute
     {
