@@ -12,3 +12,9 @@
 .hover\:grow:hover {
     transform: scale(1.02);
 }
+
+/* ToastUi.editor의 기본폰트사이즈 변경 */
+.toastui-editor-contents,
+.ProseMirror {
+    font-size: 1rem !important;
+}
