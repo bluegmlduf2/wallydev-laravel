@@ -1,4 +1,4 @@
-<a href="/posts/{{ $post }}">
+<a href="/posts/{{ $post->postId }}">
     <div class="rounded-lg overflow-hidden shadow-lg hover:grow hover:shadow-lg h-full">
         <div class="w-full h-64">
             <img class="w-full h-full bg-center bg-gray-200"
@@ -6,7 +6,7 @@
         </div>
         <div class="p-4 bg-white flex flex-col">
             <h4 class="text-xl font-bold truncate">{{ $post['title'] }}</h4>
-            <p class="text-sm my-3 line-clamp-3">{{ $post['content'] }}</p>
+            <p class="text-sm my-3 line-clamp-3">{{ $post['contentShort'] }}</p>
             <div>
                 <small class="text-gray-600">{{ $post['createdDate'] }}</small>
             </div>

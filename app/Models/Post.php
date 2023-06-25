@@ -21,18 +21,19 @@ class Post extends Model
         'writerUid',
         'title',
         'postViewCount',
+        'category',
+        'content',
         'createdDate',
         'updatedDate',
-        'category',
     ];
 
 
-    protected function content(): Attribute
+    protected function contentShort(): Attribute
     {
         return Attribute::make(
-            get: function ($value) {
+            get: function () {
                 // HTML태그제거후 HTML엔터티도 제거후,첫 100글자만 저장
-                return mb_substr(html_entity_decode(strip_tags($value)), 0, 150);
+                return mb_substr(html_entity_decode(strip_tags($this->attributes['content'])), 0, 150);
             },
         );
     }
