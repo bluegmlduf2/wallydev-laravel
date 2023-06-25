@@ -26,7 +26,6 @@ class PostController extends Controller
             $query->whereIn('category', ['food', 'today']);
         }
 
-        // TODO 페이지네이션
         $posts = $query->paginate(12);
 
         return view('home', compact('posts'));
