@@ -1,7 +1,7 @@
 <a href="/posts/{{ $post->postId }}">
     <div class="rounded-lg overflow-hidden shadow-lg hover:grow hover:shadow-lg h-full">
         <div class="w-full h-64">
-            <img class="w-full h-full bg-center bg-gray-200"
+            <img class="w-full h-full object-cover bg-gray-200"
                 @if ($post['imageUrl']) src="{{ $post['imageUrl'] }}" alt="postimage" @endif>
         </div>
         <div class="p-4 bg-white flex flex-col">
