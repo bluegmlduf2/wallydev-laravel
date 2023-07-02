@@ -18,3 +18,8 @@
 .ProseMirror {
     font-size: 1rem !important;
 }
+/* 게시물과 에디터의 이미지 사이즈 */
+#viewer img {
+    width: 100%;
+    max-width: 600px;
+}
