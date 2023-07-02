@@ -1,6 +1,6 @@
 @include('layouts.header')
 
-<body class="container mx-auto px-4 pb-4">
+<body class="max-w-screen-xl mx-auto px-4 pb-4">
     <!-- Navbar -->
     @include('layouts.navigation')
 
