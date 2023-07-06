@@ -19,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // 관리자 권한 확인
         Gate::define('is-admin', function (User $user) {
-            return $user->email === env('ADMIN_USER_EMAIL');
+            return $user->email === config('app.admin_mail');
         });
     }
 }
