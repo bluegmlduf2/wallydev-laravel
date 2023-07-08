@@ -2,6 +2,9 @@
     <x-slot name="header">
         <h2 class="font-bold text-3xl mt-2 mb-4 md:my-7">
             Latest Posts
+            @env('local')
+            (테스트환경입니다)
+            @endenv
         </h2>
     </x-slot>
 
