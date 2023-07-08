@@ -11,17 +11,23 @@ import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
-const viewer = new Viewer({
-    el: document.querySelector("#viewer"),
-});
+const viewerId = document.querySelector("#viewer");
+const viewer = viewerId
+    ? new Viewer({
+          el: viewerId,
+      })
+    : null;
 
-const editor = new Editor({
-    el: document.querySelector("#editor"),
-    height: "500px",
-    initialEditType: "wysiwyg",
-    previewStyle: "vertical",
-    usageStatistics: false,
-});
+const editorId = document.querySelector("#editor");
+const editor = editorId
+    ? new Editor({
+          el: document.querySelector("#editor"),
+          height: "65vh",
+          initialEditType: "wysiwyg",
+          previewStyle: "vertical",
+          usageStatistics: false,
+      })
+    : null;
 
 window.viewer = viewer;
 window.editor = editor;

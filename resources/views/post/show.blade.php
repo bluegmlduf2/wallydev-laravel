@@ -10,9 +10,19 @@
                 echo $post->content;
             @endphp
         </div>
-        <div class="flex justify-start mt-5 mb-3 text-gray-500 border-t-2 border-t-gray-300 p-3">
-            <span>{{ \Carbon\Carbon::parse($post->createdDate)->toFormattedDateString() }}</span>
-            <span class="pl-3">Views {{ $post->postViewCount }}</span>
+        <div class="flex justify-between items-center mt-5 mb-3 text-gray-500 border-t-2 border-t-gray-300 p-3">
+            <div>
+                <span>{{ \Carbon\Carbon::parse($post->createdDate)->toFormattedDateString() }}</span>
+                <span class="pl-3">Views {{ $post->postViewCount }}</span>
+            </div>
+            @if (Gate::allows('is-admin'))
+                <form action="{{ route('post.edit', ['post' => $post->postId]) }}" method="GET">
+                    @csrf
+                    <x-secondary-button type="submit">
+                        {{ __('Edit') }}
+                    </x-secondary-button>
+                </form>
+            @endif
         </div>
     </div>
 </x-app-layout>

@@ -54,10 +54,11 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        @if ( Gate::allows('is-admin') )
-                            <x-dropdown-link :href="route('profile.edit')">
+
+                        @if (Gate::allows('is-admin'))
+                            <x-dropdown-link :href="route('post.create')">
                                 {{ __('Write') }}
-                            </x-dropdown-link>                            
+                            </x-dropdown-link>
                         @endif
 
                         <x-dropdown-link :href="route('profile.edit')">
@@ -150,6 +151,12 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
+                    @if (Gate::allows('is-admin'))
+                        <x-responsive-nav-link :href="route('post.create')">
+                            {{ __('Write') }}
+                        </x-responsive-nav-link>
+                    @endif
+
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
