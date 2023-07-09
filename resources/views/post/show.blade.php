@@ -16,7 +16,7 @@
                 <span class="pl-3">Views {{ $post->postViewCount }}</span>
             </div>
             @if (Gate::allows('is-admin'))
-                <form action="{{ route('post.edit', ['post' => $post->postId]) }}" method="GET">
+                <form action="{{ route('posts.edit', ['post' => $post->postId]) }}" method="GET">
                     @csrf
                     <x-secondary-button type="submit">
                         {{ __('Edit') }}

@@ -52,7 +52,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title=$request->input('title');
+        $content=$request->input('content');
+        
+        $post=new Post();
+        $post->title = $title;
+        $post->content = $content;
+
+        $post->save();
+        
+        return redirect()->route('posts.index')->with('success', '게시물이 성공적으로 저장되었습니다.');
     }
 
     /**
@@ -88,7 +97,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $title=$request->input('title');
+        $content=$request->input('content');
+        
+        $post=new Post();
+        $post->title = $title;
+        $post->content = $content;
+
+        $post->save();
+        
+        return redirect()->route('posts.index')->with('success', '게시물이 성공적으로 저장되었습니다.');
     }
 
     /**

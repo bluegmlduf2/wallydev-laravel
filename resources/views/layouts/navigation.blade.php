@@ -56,7 +56,7 @@
                     <x-slot name="content">
 
                         @if (Gate::allows('is-admin'))
-                            <x-dropdown-link :href="route('post.create')">
+                            <x-dropdown-link :href="route('posts.create')">
                                 {{ __('Write') }}
                             </x-dropdown-link>
                         @endif
@@ -152,7 +152,7 @@
 
                 <div class="mt-3 space-y-1">
                     @if (Gate::allows('is-admin'))
-                        <x-responsive-nav-link :href="route('post.create')">
+                        <x-responsive-nav-link :href="route('posts.create')">
                             {{ __('Write') }}
                         </x-responsive-nav-link>
                     @endif
