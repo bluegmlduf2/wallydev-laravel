@@ -24,9 +24,6 @@ Route::get('/others', [PostController::class, 'index'])->name('others');
 Route::get('/life', [PostController::class, 'index'])->name('life');
 Route::view('/about', 'about')->name('about');
 
-// 게시글 상세표시
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,5 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
 });
+
+// 게시글 상세표시
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 
 require __DIR__ . '/auth.php';

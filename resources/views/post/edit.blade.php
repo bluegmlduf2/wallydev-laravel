@@ -4,15 +4,18 @@
             {{ __('Write') }}
         </h2>
     </x-slot>
+
     <div class="mb-4">
-        <x-text-input id="title" type="text" class="mt-1 block w-full" value="{{ $post?->title }}"
+        <x-text-input id="title" type="text" class="mt-1 block w-full" value="{{ $post->title ?? '' }}"
             spellcheck="false" />
     </div>
+
     <div id="editor" spellcheck="false">
         @php
-            echo $post?->content;
+            echo $post->content ?? '';
         @endphp
     </div>
+
     <div class="flex justify-between mt-3">
         <x-secondary-button onclick="location.href = '{{ URL::previous() ?? route('home') }}'">
             {{ __('Cancel') }}
