@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -39,18 +39,16 @@ class PostController extends Controller
      */
     public function create()
     {
-        Gate::authorize('is-admin');
-
         return view('post.edit');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $title=$request->input('title');
         $content=$request->input('content');
@@ -78,13 +76,11 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(StorePostRequest $post)
     {
-        Gate::authorize('is-admin');
-
         return view('post.edit', compact('post'));
     }
 

@@ -11,14 +11,14 @@
             @method('PATCH')
         @endif
         <div class="mb-4">
-            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="$post->title ?? ''"
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $post->title ?? '')"
                 spellcheck="false" required />
         </div>
 
         {{-- 작성한 게시글 --}}
         <div id="editor" spellcheck="false">
             {{-- xss 방지하지 않은 내용 그대로 출력 --}}
-            {!! $post->content ?? '' !!}
+            {!! old('content', $post->content ?? '') !!}
         </div>
         {{-- 작성한 게시글 전송용 --}}
         <input type="hidden" name="content" id="content">
