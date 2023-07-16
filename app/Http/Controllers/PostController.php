@@ -20,14 +20,11 @@ class PostController extends Controller
 
         $query = Post::query();
 
-        // 카테고리 검색조건 설정
-        if (in_array($category, ['javascript', 'php', 'vuejs', 'others'])) {
+        if ($category) {
             $query->where('category', $category);
-        } elseif ($category === 'life') {
-            $query->whereIn('category', ['food', 'today']);
         }
 
-        $posts = $query->paginate(12);
+        $posts = $query->orderBy('createdDate', 'desc')->paginate(12);
 
         return view('home', compact('posts'));
     }
