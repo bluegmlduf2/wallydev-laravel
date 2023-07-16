@@ -11,8 +11,18 @@
             @method('PATCH')
         @endif
         <div class="mb-4">
-            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $post->title ?? '')"
-                spellcheck="false" />
+            <div class="flex justify-between">
+                <x-text-input id="title" name="title" type="text" class="mr-2 w-full" :value="old('title', $post->title ?? '')"
+                    spellcheck="false" />
+                <select name="category" id="category"
+                    class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm">
+                    <option value="life">Life</option>
+                    <option value="javascript">Javascript</option>
+                    <option value="vuejs">VueJs</option>
+                    <option value="php">PHP</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 

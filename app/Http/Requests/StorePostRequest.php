@@ -26,6 +26,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:30'],
+            'content' => [],
+            'category' => ['required', 'in:javascript,php,vuejs,others,life,food,today'],
         ];
     }
 }
