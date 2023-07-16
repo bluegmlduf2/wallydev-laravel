@@ -50,10 +50,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $title=$request->input('title');
-        $content=$request->input('content');
-        
-        $post=new Post();
+        ['title' => $title, 'content' => $content] = $request->validated();
         $post->title = $title;
         $post->content = $content;
 

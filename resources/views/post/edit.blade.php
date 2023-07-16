@@ -12,7 +12,8 @@
         @endif
         <div class="mb-4">
             <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $post->title ?? '')"
-                spellcheck="false" required />
+                spellcheck="false" />
+            <x-input-error :messages="$errors->get('title')" class="mt-2" />
         </div>
 
         {{-- 작성한 게시글 --}}
