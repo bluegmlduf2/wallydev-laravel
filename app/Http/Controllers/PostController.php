@@ -110,6 +110,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        $message = __('The :resource was deleted!', ['resource' => __('validation.attributes.post')]);
+
+        return redirect()->route('home', ["post" => $post->postId])
+            ->with(["message" => $message]);
     }
 }

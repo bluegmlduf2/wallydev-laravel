@@ -16,9 +16,13 @@
                         {{ __('Cancel') }}
                     </x-secondary-button>
 
-                    <x-danger-button class="ml-3">
-                        {{ __('Delete') }}
-                    </x-danger-button>
+                    <form action="{{ route('posts.destroy', ['post' => $post->postId]) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <x-danger-button class="ml-3" type="submit">
+                            {{ __('Delete') }}
+                        </x-danger-button>
+                    </form>
                 </div>
             </div>
         </x-modal>
