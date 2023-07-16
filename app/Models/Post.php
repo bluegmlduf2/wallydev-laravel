@@ -2,32 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use HasFactory;
 
     protected $table = 'posts';
-    
+
     protected $primaryKey = 'postId';
 
     public $incrementing = false;
 
+    // 기본 날짜 속성명 변경
+    const CREATED_AT = 'createdDate';
+    const UPDATED_AT = 'updatedDate';
+
+    // 대량할당용 (배열) 
     protected $fillable = [
-        'postId',
-        'writerUid',
         'title',
-        'postViewCount',
         'category',
         'content',
-        'createdDate',
-        'updatedDate',
     ];
 
+    // 칼럼 기본값 설정
+    protected $attributes = [
+        'postViewCount' => 0,
+    ];
 
+    // 엘로퀀트 게시글 모델 생성시 UUID등록
+    protected static function booted()
+    {
+        // 게시글의 생성되기전에 호출됨
+        static::creating(function ($posts) {
+            $posts->postId = Str::uuid()->toString();
+        });
+    }
+
+    // 취득가능한 사용자 칼럼 추가 (Accessors)
     protected function contentShort(): Attribute
     {
         return Attribute::make(
@@ -38,6 +51,7 @@ class Post extends Model
         );
     }
 
+    // 취득가능한 사용자 칼럼 추가 (Accessors)
     protected function imageUrl(): Attribute
     {
         return Attribute::make(
