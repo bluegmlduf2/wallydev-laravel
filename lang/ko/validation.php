@@ -131,8 +131,9 @@ return [
         ],
     ],
     'attributes' => [
-        'filename'=>'파일명',
-        'file'=>'파일',
-        'title'=>'제목',
+        'filename' => '파일명',
+        'file' => '파일',
+        'title' => '제목',
+        'post' => '게시글',
     ]
 ];

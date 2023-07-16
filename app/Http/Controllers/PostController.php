@@ -53,7 +53,8 @@ class PostController extends Controller
         $post->fill($validatedData);
         $post->save();
 
-        return redirect()->route('posts.index')->with('success', '게시물이 성공적으로 저장되었습니다.');
+        return redirect()->route('posts.show', ["post" => $post->postId])
+            ->with(["message_item" =>  __('validation.attributes.post')]);
     }
 
     /**
