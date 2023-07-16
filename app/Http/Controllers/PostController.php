@@ -53,8 +53,10 @@ class PostController extends Controller
         $post->fill($validatedData);
         $post->save();
 
+        $message = __('The :resource was created!', ['resource' => __('validation.attributes.post')]);
+
         return redirect()->route('posts.show', ["post" => $post->postId])
-            ->with(["message_item" =>  __('validation.attributes.post')]);
+            ->with(["message" => $message]);
     }
 
     /**

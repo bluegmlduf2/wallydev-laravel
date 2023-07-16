@@ -1,16 +1,5 @@
 <x-app-layout>
-    <x-modal name="confirm-user-deletion" :show="session('message_item')" focusable>
-        <div class="p-6">
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('The :resource was created!', ['resource' => session('message_item')]) }}
-            </h2>
-            <div class="mt-6 flex justify-end">
-                <x-primary-button x-on:click="$dispatch('close')">
-                    {{ __('Confirm') }}
-                </x-primary-button>
-            </div>
-        </div>
-    </x-modal>
+    <x-alert :message="session('message')"/>
     <div class="flex flex-col">
         <x-slot name="header">
             <h1 class="font-bold text-4xl mt-2 mb-4 md:my-7">
