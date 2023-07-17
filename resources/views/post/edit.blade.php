@@ -16,11 +16,12 @@
                     spellcheck="false" />
                 <select name="category" id="category"
                     class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm">
-                    <option value="life">Life</option>
-                    <option value="javascript">Javascript</option>
-                    <option value="vuejs">VueJs</option>
-                    <option value="php">PHP</option>
-                    <option value="others">Others</option>
+                    @foreach (['life', 'javascript', 'vuejs', 'php', 'others'] as $category)
+                        <option value="{{ $category }}"
+                            {{ old('category', $post->category) === $category ? 'selected' : '' }}>
+                            {{ strtoupper($category) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <x-input-error :messages="$errors->get('title')" class="mt-2" />
