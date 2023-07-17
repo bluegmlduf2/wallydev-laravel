@@ -135,5 +135,8 @@ return [
         'file' => '파일',
         'title' => '제목',
         'post' => '게시글',
+        'comment' => '댓글',
+        'name' => '이름',
+        'password' => '비밀번호',
     ]
 ];

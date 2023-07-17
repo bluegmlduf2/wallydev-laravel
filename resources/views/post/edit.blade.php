@@ -18,7 +18,7 @@
                     class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm">
                     @foreach (['life', 'javascript', 'vuejs', 'php', 'others'] as $category)
                         <option value="{{ $category }}"
-                            {{ old('category', $post->category) === $category ? 'selected' : '' }}>
+                            {{ old('category', $post->category ?? 'life˝') === $category ? 'selected' : '' }}>
                             {{ strtoupper($category) }}
                         </option>
                     @endforeach
