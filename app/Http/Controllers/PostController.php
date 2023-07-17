@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\DeletePostRequest;
 
 class PostController extends Controller
 {
@@ -108,8 +109,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeletePostRequest $request, $id)
     {
+        unset($request);
+
         $post = Post::findOrFail($id);
         $post->delete();
 
