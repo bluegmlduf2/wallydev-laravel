@@ -74,10 +74,10 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Http\Requests\StorePostRequest  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(StorePostRequest $post)
+    public function edit(Post $post)
     {
         return view('post.edit', compact('post'));
     }
@@ -85,22 +85,22 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, $id)
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
+        $validatedData = $request->validated();
 
-        $post = new Post();
-        $post->title = $title;
-        $post->content = $content;
-
+        $post = Post::findOrfail($id);
+        $post->fill($validatedData);
         $post->save();
 
-        return redirect()->route('posts.index')->with('success', '게시물이 성공적으로 저장되었습니다.');
+        $message = __('The :resource was updated!', ['resource' => __('validation.attributes.post')]);
+
+        return redirect()->route('posts.show', ["post" => $post->postId])
+            ->with(["message" => $message]);
     }
 
     /**
