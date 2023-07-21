@@ -40,25 +40,23 @@
     </form>
 </div>
 <div class="mt-5 mb-4 space-y-2">
-    <div class="grid grid-cols-12 md:grid-cols-12 gap-4">
-        <x-input-label for="comment-update" class="font-semibold text-lg truncate my-3 col-span-3 md:col-span-1"
-            :value="'사용자명1111'" />
-        <x-text-input id="comment-update" class="col-span-9 md:col-span-8" type="text" name="comment-update"
-            spellcheck="false" :placeholder="__('Please Input :resource', [
+    <div class="grid grid-cols-12 md:grid-cols-12 gap-4 comment-wrapper">
+        <x-input-label class="font-semibold text-lg truncate my-3 col-span-3 md:col-span-1" :value="'사용자명1111'" />
+        <x-text-input class="col-span-7 md:col-span-10" disabled type="text" name="comment-update" spellcheck="false"
+            :placeholder="__('Please Input :resource', [
                 'resource' => __('validation.attributes.comment'),
             ])" :value="old('comment-update')" />
         <x-input-error :messages="$errors->get('comment-update')" class="mt-2" />
-        <x-text-input id="password-update" class="col-span-5 md:col-span-2 col-start-4" type="password"
-            name="password-update" :value="old('password-update')" placeholder="{{ __('Password') }}" autocomplete="current-password"
-            autofocus />
+        <x-text-input class="col-span-5 md:col-span-2 col-start-4 hidden" type="password" name="password-update"
+            :value="old('password-update')" placeholder="{{ __('Password') }}" autocomplete="current-password" autofocus />
         <x-input-error :messages="$errors->get('current-password')" class="mt-2" />
-        <div class="flex justify-between items-center col-span-4 md:col-span-1">
-            <svg fill="#58D68D" class="w-7 h-7 cursor-pointer save-comment-button" viewBox="0 -8 72 72"
+        <div class="flex justify-end items-center col-span-2 md:col-span-1 comment-button-wrapper">
+            <svg fill="#58D68D" class="w-7 h-7 cursor-pointer save-comment-button hidden" viewBox="0 -8 72 72"
                 onclick="toggleEditComment(this)">
                 <path
                     d="M61.07,12.9,57,8.84a2.93,2.93,0,0,0-4.21,0L28.91,32.73,19.2,23A3,3,0,0,0,15,23l-4.06,4.07a2.93,2.93,0,0,0,0,4.21L26.81,47.16a2.84,2.84,0,0,0,2.1.89A2.87,2.87,0,0,0,31,47.16l30.05-30a2.93,2.93,0,0,0,0-4.21Z" />
             </svg>
-            <svg class="w-6 h-6 cursor-pointer delete-comment-button" viewBox="-3 0 32 32" fill="none"
+            <svg class="w-6 h-6 cursor-pointer delete-comment-button hidden" viewBox="-3 0 32 32" fill="none"
                 onclick="toggleEditComment(this)">
                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
                     sketch:type="MSPage">
@@ -81,27 +79,13 @@
                     d="M15.2282 3.6512C16.1068 2.77252 17.5315 2.77252 18.4101 3.6512L20.5315 5.77252C21.4101 6.6512 21.4101 8.07582 20.5315 8.9545L18.7283 10.7576L13.425 5.45432L15.2282 3.6512Z"
                     stroke="#979A9A" stroke-width="1.5" />
             </svg>
-            <svg class="w-6 h-6 cursor-pointer hidden cancel-comment-button" fill="#979A9A" viewBox="0 0 32 32"
+            <svg class="w-6 h-6 cursor-pointer cancel-comment-button hidden" fill="#979A9A" viewBox="0 0 32 32"
                 onclick="toggleEditComment(this)">
                 <path
                     d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
                 </path>
             </svg>
         </div>
-    </div>
-    <div class="flex space-x-4 items-center justify-center">
-        <x-input-label for="comment" class="font-semibold text-lg truncate my-3 w-3/12 md:w-1/12"
-            :value="'사용자명22'" />
-        <x-text-input id="name" class="w-9/12 md:w-11/12" :disabled="true" name="name"
-            :value="'테스트내용입니다22'" />
-        <svg class="w-6 h-6 cursor-pointer" viewBox="0 0 24 24" fill="none">
-            <path id="vector"
-                d="M18.4101 3.6512L20.5315 5.77252C21.4101 6.6512 21.4101 8.07582 20.5315 8.9545L9.54019 19.9458C9.17774 20.3082 8.70239 20.536 8.19281 20.5915L4.57509 20.9856C3.78097 21.072 3.11061 20.4017 3.1971 19.6076L3.59111 15.9898C3.64661 15.4803 3.87444 15.0049 4.23689 14.6425L3.70656 14.1121L4.23689 14.6425L15.2282 3.6512C16.1068 2.77252 17.5315 2.77252 18.4101 3.6512Z"
-                stroke="#979A9A" stroke-width="1.5" />
-            <path id="vector_2"
-                d="M15.2282 3.6512C16.1068 2.77252 17.5315 2.77252 18.4101 3.6512L20.5315 5.77252C21.4101 6.6512 21.4101 8.07582 20.5315 8.9545L18.7283 10.7576L13.425 5.45432L15.2282 3.6512Z"
-                stroke="#979A9A" stroke-width="1.5" />
-        </svg>
     </div>
 </div>
 <script>
@@ -116,10 +100,66 @@
     }
 
     function toggleEditComment(e) {
-        debugger
-        //save-comment-button
-        //delete-comment-button
-        //edit-comment-button
-        //cancel-comment-button
+        const commentWrapper = e.closest('.comment-wrapper');
+        const commentWrapperObject = {
+            'commentUpdate': commentWrapper.querySelector('[name="comment-update"]'),
+            'passwordUpdate': commentWrapper.querySelector('[name="password-update"]'),
+            'saveCommentButton': commentWrapper.querySelector('.save-comment-button'),
+            'deleteCommentButton': commentWrapper.querySelector('.delete-comment-button'),
+            'editCommentButton': commentWrapper.querySelector('.edit-comment-button'),
+            'cancelCommentButton': commentWrapper.querySelector('.cancel-comment-button'),
+            'commentButtonWrapper': commentWrapper.querySelector('.comment-button-wrapper'),
+        };
+
+        switch (true) {
+            case e.classList.contains('save-comment-button'):
+                break;
+            case e.classList.contains('edit-comment-button'):
+                clickEditComment(commentWrapperObject);
+                break;
+            case e.classList.contains('delete-comment-button'):
+                break;
+            case e.classList.contains('cancel-comment-button'):
+                clickCancelComment(commentWrapperObject);
+                break;
+        }
+    }
+
+    function clickEditComment(commentWrapperObject) {
+        // 수정모드
+        commentWrapperObject.commentUpdate.disabled = false;
+        commentWrapperObject.commentUpdate.classList.add('md:col-span-8');
+        commentWrapperObject.commentUpdate.classList.remove('md:col-span-10');
+        commentWrapperObject.commentUpdate.classList.add('col-span-9');
+        commentWrapperObject.commentUpdate.classList.remove('col-span-7');
+        commentWrapperObject.commentUpdate.classList.remove('border-white', '!shadow-none');
+        commentWrapperObject.commentButtonWrapper.classList.add('col-span-4');
+        commentWrapperObject.commentButtonWrapper.classList.remove('col-span-2');
+        commentWrapperObject.commentButtonWrapper.classList.add('justify-between');
+        commentWrapperObject.commentButtonWrapper.classList.remove('justify-end');
+        commentWrapperObject.passwordUpdate.style.display = 'block';
+        commentWrapperObject.saveCommentButton.style.display = 'block';
+        commentWrapperObject.deleteCommentButton.style.display = 'block';
+        commentWrapperObject.editCommentButton.style.display = 'none';
+        commentWrapperObject.cancelCommentButton.style.display = 'block';
+    }
+
+    function clickCancelComment(commentWrapperObject) {
+        // 표시모드
+        commentWrapperObject.commentUpdate.disabled = true;
+        commentWrapperObject.commentUpdate.classList.add('md:col-span-10');
+        commentWrapperObject.commentUpdate.classList.remove('md:col-span-8');
+        commentWrapperObject.commentUpdate.classList.add('col-span-7');
+        commentWrapperObject.commentUpdate.classList.remove('col-span-9');
+        commentWrapperObject.commentUpdate.classList.add('border-white', '!shadow-none');
+        commentWrapperObject.commentButtonWrapper.classList.remove('col-span-4');
+        commentWrapperObject.commentButtonWrapper.classList.add('col-span-2');
+        commentWrapperObject.commentButtonWrapper.classList.remove('justify-between');
+        commentWrapperObject.commentButtonWrapper.classList.add('justify-end');
+        commentWrapperObject.passwordUpdate.style.display = 'none';
+        commentWrapperObject.saveCommentButton.style.display = 'none';
+        commentWrapperObject.deleteCommentButton.style.display = 'none';
+        commentWrapperObject.editCommentButton.style.display = 'block';
+        commentWrapperObject.cancelCommentButton.style.display = 'none';
     }
 </script>
