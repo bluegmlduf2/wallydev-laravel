@@ -42,25 +42,28 @@
     </form>
 </div>
 @foreach ($post->comments as $comment)
-    <form class="mt-5 mb-4 space-y-2">
+    <form class="mt-5 mb-4 space-y-2"
+        action="{{ route('comments.update', ['post' => $post->postId, 'comment' => $comment->commentId]) }}"
+        method="POST">
+        @csrf
+        @method('PATCH')
         <div class="grid grid-cols-12 md:grid-cols-12 gap-4 comment-wrapper">
             <x-input-label class="font-semibold text-lg truncate my-3 col-span-3 md:col-span-1" :value="$comment->name" />
             <x-text-input class="col-span-7 md:col-span-10" disabled type="text" name="comment-update"
                 spellcheck="false" :placeholder="__('Please Input :resource', [
                     'resource' => __('validation.attributes.comment'),
                 ])" :value="old('comment-update', $comment->comment)" autocomplete="off" />
-            <x-input-error :messages="$errors->get('comment-update')" class="mt-2" />
             <x-text-input class="col-span-5 md:col-span-2 col-start-4 hidden" type="password" name="password-update"
                 :value="old('password-update')"
                 placeholder="{{ __('Please enter a :resource of at least :length characters', ['resource' => __('Password'), 'length' => '4']) }}"
-                autocomplete="current-password" autofocus />
-            <x-input-error :messages="$errors->get('current-password')" class="mt-2" />
+                autocomplete="false" autofocus />
             <div class="flex justify-end items-center col-span-2 md:col-span-1 comment-button-wrapper">
-                <svg fill="#58D68D" class="w-7 h-7 cursor-pointer save-comment-button hidden" viewBox="0 -8 72 72"
-                    onclick="toggleEditComment(this)">
-                    <path
-                        d="M61.07,12.9,57,8.84a2.93,2.93,0,0,0-4.21,0L28.91,32.73,19.2,23A3,3,0,0,0,15,23l-4.06,4.07a2.93,2.93,0,0,0,0,4.21L26.81,47.16a2.84,2.84,0,0,0,2.1.89A2.87,2.87,0,0,0,31,47.16l30.05-30a2.93,2.93,0,0,0,0-4.21Z" />
-                </svg>
+                <button type="submit">
+                    <svg fill="#58D68D" class="w-7 h-7 cursor-pointer save-comment-button hidden" viewBox="0 -8 72 72">
+                        <path
+                            d="M61.07,12.9,57,8.84a2.93,2.93,0,0,0-4.21,0L28.91,32.73,19.2,23A3,3,0,0,0,15,23l-4.06,4.07a2.93,2.93,0,0,0,0,4.21L26.81,47.16a2.84,2.84,0,0,0,2.1.89A2.87,2.87,0,0,0,31,47.16l30.05-30a2.93,2.93,0,0,0,0-4.21Z" />
+                    </svg>
+                </button>
                 <svg class="w-6 h-6 cursor-pointer delete-comment-button hidden" viewBox="-3 0 32 32" fill="none"
                     onclick="clickDeleteCommentModal(true,'{{ $comment->commentId }}')">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
@@ -95,6 +98,12 @@
     </form>
 @endforeach
 <script>
+    function clickSaveComment(commentId) {
+        // const form = document.getElementById('update-comment-form');
+        // form.action = `/posts/{{ $post->postId }}/${this.commentId}`;
+        // form.submit();
+    }
+
     function toggleComment(isOpen) {
         const comment = document.getElementById('comment-wrapper');
         const closeComment = document.getElementById('close-comment-wrapper');
@@ -118,12 +127,8 @@
         };
 
         switch (true) {
-            case e.classList.contains('save-comment-button'):
-                break;
             case e.classList.contains('edit-comment-button'):
                 clickEditComment(commentWrapperObject);
-                break;
-            case e.classList.contains('delete-comment-button'):
                 break;
             case e.classList.contains('cancel-comment-button'):
                 clickCancelComment(commentWrapperObject);

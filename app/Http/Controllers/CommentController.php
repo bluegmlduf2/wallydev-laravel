@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\DeleteCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Hash;
@@ -35,13 +36,27 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCommentRequest  $request
+     * @param  \App\Http\Requests\UpdateCommentRequest  $request
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCommentRequest $request, Comment $comment)
+    public function update(UpdateCommentRequest $request, Post $post, Comment $comment)
     {
-        //
+        $validatedData = $request->validated();
+        $inputPassword = $validatedData['password-update'];
+        $inputComment = $validatedData['comment-update'];
+
+        $message = ["error-message" => __("The password is incorrect.")];
+
+        if (Hash::check($inputPassword, $comment->password)) {
+            $message = ["success-message" => __('The :resource was updated!', ['resource' => __('validation.attributes.comment')])];
+            $comment->comment = $inputComment;
+            $comment->save();
+        }
+
+        return redirect()->route('posts.show', ["post" => $post->postId])
+            ->with($message);
     }
 
     /**
@@ -53,7 +68,8 @@ class CommentController extends Controller
      */
     public function destroy(DeleteCommentRequest $request, Post $post, Comment $comment)
     {
-        $inputPassword = $request->validated()['password-delete'];
+        $validatedData = $request->validated();
+        $inputPassword = $validatedData['password-delete'];
 
         $message = ["error-message" => __("The password is incorrect.")];
 

@@ -7,7 +7,7 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class DeleteCommentRequest extends FormRequest
+class UpdateCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,22 @@ class DeleteCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'password-delete' => ['required', Password::min(4)],
+            'comment-update' => ['required'],
+            'password-update' => ['required', 'min:4'],
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'comment-update.required' => __('Please Input :resource', ['resource' => __('validation.attributes.comment')]),
+            'password-update.required' => __('Please Input :resource', ['resource' => __('validation.attributes.password')]),
+            'password-update.min' => __('Please enter a :resource of at least :length characters', ['resource' => __('Password'), 'length' => '4']),
         ];
     }
 
@@ -41,10 +56,12 @@ class DeleteCommentRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
+        $firstErrorMessage = $validator->errors()->first();
+
         $response = redirect()->back()
             ->withInput($this->input())
             ->with([
-                'error-message' => __("The password is incorrect.")
+                'error-message' => $firstErrorMessage
             ])
             ->withErrors($validator->errors(), $this->errorBag);
 
