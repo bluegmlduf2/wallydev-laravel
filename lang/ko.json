@@ -576,10 +576,10 @@
     "The :attribute must contain at least one number.": ":attribute은(는) 반드시 하나 이상의 숫자를 포함해야합니다.",
     "The :attribute must contain at least one symbol.": "attribute은(는) 반드시 하나 이상의 특수 문자를 포함해야합니다.",
     "The :attribute must contain at least one uppercase and one lowercase letter.": ":attribute에는 하나 이상의 대문자와 하나의 소문자가 포함되어야 합니다.",
-    "The :resource was created!": "이 :resource (이)가 생성되었습니다!",
-    "The :resource was deleted!": "이 :resource (이)가 삭제되었습니다!",
-    "The :resource was restored!": "이 :resource (이)가 복구 되었습니다.!",
-    "The :resource was updated!": "이 :resource (이)가 업데이트 되었습니다.!",
+    "The :resource was created!": ":resource (이)가 생성되었습니다!",
+    "The :resource was deleted!": ":resource (이)가 삭제되었습니다!",
+    "The :resource was restored!": ":resource (이)가 복구 되었습니다.!",
+    "The :resource was updated!": ":resource (이)가 업데이트 되었습니다.!",
     "The action ran successfully!": "작업이 성공적으로 실행되었습니다!",
     "The file was deleted!": "파일이 삭제되었습니다!",
     "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "주어진 :attribute이(가) 데이터 누출에 나타났습니다. 다른 :attribute을(를) 선택하세요.",
@@ -711,5 +711,6 @@
     "Zip / Postal Code": "Zip / 우편 번호",
     "Åland Islands": "올란드 제도",
     "Please Input :resource": ":resource(을)를 입력해주세요",
+    "Please enter a :resource of at least :length characters": ":resource(을)를 :length자리 이상 입력해주세요",
     "CreateNew": "작성"
 }
