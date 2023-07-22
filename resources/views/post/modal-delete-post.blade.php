@@ -1,4 +1,4 @@
-<div id="modal" style="display: none;">
+<div id="modal-delete-post" style="display: none;">
     <x-modal>
         <div class="p-6">
             <h2 class="text-lg font-medium text-gray-900">
@@ -6,11 +6,11 @@
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                {{ __('Are you sure you want to delete the selected resources?') }}
+                {{ __('Are you sure you want to delete this :resource?', ['resource' => __('validation.attributes.post')]) }}
             </p>
 
             <div class="mt-6 flex justify-end">
-                <x-secondary-button onclick="toggleModal(false)">
+                <x-secondary-button onclick="clickDeletePostModal(false)">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
@@ -25,3 +25,9 @@
         </div>
     </x-modal>
 </div>
+<script>
+    function clickDeletePostModal(isOpen) {
+        const modal = document.getElementById('modal-delete-post');
+        modal.style.display = isOpen ? "block" : "none";
+    }
+</script>

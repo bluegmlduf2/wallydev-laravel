@@ -3,32 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\DeleteCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Hash;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,29 +29,7 @@ class CommentController extends Controller
         $message = __('The :resource was created!', ['resource' => __('validation.attributes.comment')]);
 
         return redirect()->route('posts.show', ["post" => $post->postId])
-            ->with(["message" => $message]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
+            ->with(["success-message" => $message]);
     }
 
     /**
@@ -88,11 +47,22 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Models\Post  $post
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(DeleteCommentRequest $request, Post $post, Comment $comment)
     {
-        //
+        $inputPassword = $request->validated()['password-delete'];
+
+        $message = ["error-message" => __("The password is incorrect.")];
+
+        if (Hash::check($inputPassword, $comment->password)) {
+            $message = ["success-message" => __('The :resource was deleted!', ['resource' => __('validation.attributes.comment')])];
+            $comment->delete();
+        }
+
+        return redirect()->route('posts.show', ["post" => $post->postId])
+            ->with($message);
     }
 }

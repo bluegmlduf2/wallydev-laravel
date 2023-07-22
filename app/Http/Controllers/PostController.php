@@ -57,7 +57,7 @@ class PostController extends Controller
         $message = __('The :resource was created!', ['resource' => __('validation.attributes.post')]);
 
         return redirect()->route('posts.show', ["post" => $post->postId])
-            ->with(["message" => $message]);
+            ->with(["success-message" => $message]);
     }
 
     /**
@@ -100,7 +100,7 @@ class PostController extends Controller
         $message = __('The :resource was updated!', ['resource' => __('validation.attributes.post')]);
 
         return redirect()->route('posts.show', ["post" => $post->postId])
-            ->with(["message" => $message]);
+            ->with(["success-message" => $message]);
     }
 
     /**
@@ -119,6 +119,6 @@ class PostController extends Controller
         $message = __('The :resource was deleted!', ['resource' => __('validation.attributes.post')]);
 
         return redirect()->route('home', ["post" => $post->postId])
-            ->with(["message" => $message]);
+            ->with(["success-message" => $message]);
     }
 }

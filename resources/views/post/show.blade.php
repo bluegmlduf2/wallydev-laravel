@@ -1,6 +1,7 @@
 <x-app-layout>
-    <x-alert :message="session('message')" />
-    @include('post.modal-post')
+    <x-alert-success :message="session('success-message')" />
+    <x-alert-error :message="session('error-message')" />
+    @include('post.modal-delete-post')
     <div class="flex flex-col">
         <x-slot name="header">
             <h1 class="font-bold text-4xl mt-2 mb-4 md:my-7">
@@ -25,7 +26,7 @@
                             {{ __('Edit') }}
                         </x-secondary-button>
                     </form>
-                    <x-secondary-button type="button" class="text-red-600" onclick="toggleModal(true)">
+                    <x-secondary-button type="button" class="text-red-600" onclick="clickDeletePostModal(true)">
                         {{ __('Delete') }}
                     </x-secondary-button>
                 </div>

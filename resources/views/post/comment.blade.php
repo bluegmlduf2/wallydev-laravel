@@ -1,3 +1,4 @@
+@include('post.modal-delete-comment')
 <div class="mb-3">
     <div class="flex items-center">
         <x-input-label class="font-semibold text-xl my-3" :value="__('validation.attributes.comment') . __('CreateNew')" />
@@ -61,7 +62,7 @@
                         d="M61.07,12.9,57,8.84a2.93,2.93,0,0,0-4.21,0L28.91,32.73,19.2,23A3,3,0,0,0,15,23l-4.06,4.07a2.93,2.93,0,0,0,0,4.21L26.81,47.16a2.84,2.84,0,0,0,2.1.89A2.87,2.87,0,0,0,31,47.16l30.05-30a2.93,2.93,0,0,0,0-4.21Z" />
                 </svg>
                 <svg class="w-6 h-6 cursor-pointer delete-comment-button hidden" viewBox="-3 0 32 32" fill="none"
-                    onclick="toggleEditComment(this)">
+                    onclick="clickDeleteCommentModal(true,'{{ $comment->commentId }}')">
                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
                         sketch:type="MSPage">
                         <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-259.000000, -203.000000)"
