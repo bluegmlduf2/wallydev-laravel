@@ -1,5 +1,6 @@
 <x-app-layout>
-    <x-alert :message="session('message')" />
+    <x-alert-success :message="session('success-message')" />
+    <x-alert-error :message="session('error-message')" />
     <x-slot name="header">
         <h2 class="font-bold text-3xl mt-2 mb-4 md:my-7">
             Latest Posts
