@@ -34,7 +34,7 @@ class Post extends Model
     // 게시글의 댓글가져오기 (1:N)
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'postId');
+        return $this->hasMany(Comment::class, 'postId')->orderBy('createdDate', 'asc');
     }
 
     // 엘로퀀트 게시글 모델 생성시 UUID등록
