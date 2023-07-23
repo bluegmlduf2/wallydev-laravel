@@ -113,6 +113,8 @@ class PostController extends Controller
     {
         unset($request);
 
+        $post->comments()->delete();
+
         $post->delete();
 
         $message = __('The :resource was deleted!', ['resource' => __('validation.attributes.post')]);
