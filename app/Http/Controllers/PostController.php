@@ -74,7 +74,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -86,14 +86,13 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\StorePostRequest  $request
-     * @param  int  $id
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePostRequest $request, $id)
+    public function update(StorePostRequest $request, Post $post)
     {
         $validatedData = $request->validated();
 
-        $post = Post::findOrfail($id);
         $post->fill($validatedData);
         $post->save();
 
@@ -106,14 +105,14 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Http\Requests\DeletePostRequest  $request
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeletePostRequest $request, $id)
+    public function destroy(DeletePostRequest $request, Post $post)
     {
         unset($request);
 
-        $post = Post::findOrFail($id);
         $post->delete();
 
         $message = __('The :resource was deleted!', ['resource' => __('validation.attributes.post')]);
