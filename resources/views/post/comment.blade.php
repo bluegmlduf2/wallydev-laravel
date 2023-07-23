@@ -16,15 +16,15 @@
         </svg>
     </div>
     <form id="comment-wrapper" class="flex space-x-2" action="{{ route('comments.store', ['post' => $post->postId]) }}"
-        style="{{ $errors->any() ? 'display: flex' : 'display: none' }}" method="post">
+        style="{{ $errors->hasAny(['name', 'password', 'comment']) ? 'display: flex' : 'display: none' }}" method="post">
         @csrf
         <div class="flex flex-col space-y-2 w-3/12">
             <x-text-input id="name" type="text" name="name" :value="old('name')"
-                placeholder="{{ __('Name') }}" autocomplete="username" autofocus />
+                placeholder="{{ __('Name') }}" autocomplete="username" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
             <x-text-input id="password" type="password" name="password" :value="old('password')"
                 placeholder="{{ __('Please enter a :resource of at least :length characters', ['resource' => __('Password'), 'length' => '4']) }}"
-                autocomplete="current-password" autofocus />
+                autocomplete="current-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
         <div class="flex flex-col w-7/12 md:w-full">
@@ -52,9 +52,8 @@
             <x-text-input class="col-span-7 md:col-span-10" disabled type="text" name="comment-update"
                 spellcheck="false" :placeholder="__('Please Input :resource', [
                     'resource' => __('validation.attributes.comment'),
-                ])" :value="old('comment-update', $comment->comment)" autocomplete="off" />
+                ])" :value="$comment->comment" autocomplete="off" />
             <x-text-input class="col-span-5 md:col-span-2 col-start-4 hidden" type="password" name="password-update"
-                :value="old('password-update')"
                 placeholder="{{ __('Please enter a :resource of at least :length characters', ['resource' => __('Password'), 'length' => '4']) }}"
                 autocomplete="false" autofocus />
             <div class="flex justify-end items-center col-span-2 md:col-span-1 comment-button-wrapper">
