@@ -1,2 +1,2 @@
 ## Command
-`php artisan storage`
+`php artisan storage:link`

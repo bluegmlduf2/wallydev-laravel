@@ -26,6 +26,34 @@ const editor = editorId
           initialEditType: "wysiwyg",
           previewStyle: "vertical",
           usageStatistics: false,
+          hooks: {
+              addImageBlobHook: async (blob, callback) => {
+                  const formData = new FormData();
+                  formData.append("image", blob);
+
+                  try {
+                      const response = await fetch("/image", {
+                          method: "POST",
+                          body: formData,
+                          headers: {
+                              Accept: "application/json",
+                          },
+                      });
+
+                      if (!response.ok) {
+                          throw new Error(
+                              `HTTP error! status: ${response.status}`
+                          );
+                      }
+
+                      const data = await response.json();
+
+                      return callback(data.url);
+                  } catch (error) {
+                      console.error("Error:", error);
+                  }
+              },
+          },
       })
     : null;
 
