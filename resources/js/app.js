@@ -50,6 +50,7 @@ const editor = editorId
 
                       return callback(data.url);
                   } catch (error) {
+                      alert("ERROR : ImageUpload");
                       console.error("Error:", error);
                   }
               },
