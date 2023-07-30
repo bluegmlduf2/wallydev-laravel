@@ -92,10 +92,11 @@ return [
     | The fallback locale determines the locale to use when the current one
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
-    |
+    | 
+    | 위의 기본 로케일이 실패시 사용할 언어
     */
 
-    'fallback_locale' => 'ko',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------

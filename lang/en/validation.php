@@ -179,6 +179,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'filename' => 'filename',
+        'file' => 'file',
+        'title' => 'title',
+        'post' => 'post',
+        'comment' => 'Comment',
+        'name' => 'name',
+        'password' => 'password',
+    ]
 
 ];
