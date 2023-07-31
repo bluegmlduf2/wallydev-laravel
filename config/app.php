@@ -132,7 +132,8 @@ return [
     |
     */
 
-    'admin_mail' => env('ADMIN_USER_EMAIL'),
+    'translator_client_id' => env('TRANSLATOR_CLIENT_ID'),
+    'translator_client_secret' => env('TRANSLATOR_CLIENT_SECRET'),
 
     /*
     |--------------------------------------------------------------------------

@@ -19,12 +19,6 @@ class Post extends Model
     const CREATED_AT = 'createdDate';
     const UPDATED_AT = 'updatedDate';
 
-    // 대량할당용 (배열) 
-    protected $fillable = [
-        'title',
-        'category',
-        'content',
-    ];
 
     // 칼럼 기본값 설정
     protected $attributes = [
@@ -47,12 +41,34 @@ class Post extends Model
     }
 
     // 취득가능한 사용자 칼럼 추가 (Accessors)
+    protected function title(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return session('locale') == 'ko' ? $this->attributes['title'] : $this->attributes['title' . ucfirst(session('locale'))];
+            },
+        );
+    }
+
+    // 취득가능한 사용자 칼럼 추가 (Accessors)
+    protected function content(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return session('locale') == 'ko' ? $this->attributes['content'] : $this->attributes['content' . ucfirst(session('locale'))];
+            },
+        );
+    }
+
+    // 취득가능한 사용자 칼럼 추가 (Accessors)
     protected function contentShort(): Attribute
     {
         return Attribute::make(
             get: function () {
                 // HTML태그제거후 HTML엔터티도 제거후,첫 100글자만 저장
-                return mb_substr(html_entity_decode(strip_tags($this->attributes['content'])), 0, 150);
+                $content = session('locale') == 'ko' ? $this->attributes['content'] : $this->attributes['content' . ucfirst(session('locale'))];
+                $content_short = mb_substr(html_entity_decode(strip_tags($content)), 0, 150);
+                return $content_short;
             },
         );
     }

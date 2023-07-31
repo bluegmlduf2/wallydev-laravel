@@ -51,7 +51,15 @@ class PostController extends Controller
         $validatedData = $request->validated();
 
         $post = new Post();
-        $post->fill($validatedData);
+
+        $post->title = $validatedData['title'];
+        $post->titleJa = translate($validatedData['title'], 'ja');
+        $post->titleEn = translate($validatedData['title'], 'en');
+        $post->content = $validatedData['content'];
+        $post->contentJa = translate($validatedData['content'], 'ja');
+        $post->contentEn = translate($validatedData['content'], 'en');
+        $post->category = $validatedData['category'];
+
         $post->save();
 
         $message = __('The :resource was created!', ['resource' => __('validation.attributes.post')]);
@@ -95,7 +103,14 @@ class PostController extends Controller
     {
         $validatedData = $request->validated();
 
-        $post->fill($validatedData);
+        $post->title = $validatedData['title'];
+        $post->titleJa = translate($validatedData['title'], 'ja');
+        $post->titleEn = translate($validatedData['title'], 'en');
+        $post->content = $validatedData['content'];
+        $post->contentJa = translate($validatedData['content'], 'ja');
+        $post->contentEn = translate($validatedData['content'], 'en');
+        $post->category = $validatedData['category'];
+
         $post->save();
 
         $message = __('The :resource was updated!', ['resource' => __('validation.attributes.post')]);
