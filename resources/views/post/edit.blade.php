@@ -51,6 +51,8 @@
     </form>
     <script>
         function createOrUpdatePost(postId) {
+            document.getElementById('spinner').classList.remove("hidden");
+
             const createPostForm = document.getElementById('createPostForm');
             document.getElementById('content').value = window.editor.getHTML();
             document.getElementById('translate-active').value = Number(createPostForm.querySelector(
