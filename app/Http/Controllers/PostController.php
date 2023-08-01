@@ -53,12 +53,12 @@ class PostController extends Controller
         $post = new Post();
 
         $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->category = $validatedData['category'];
         $post->titleJa = translate($validatedData['title'], 'ja');
         $post->titleEn = translate($validatedData['title'], 'en');
-        $post->content = $validatedData['content'];
         $post->contentJa = translate($validatedData['content'], 'ja');
         $post->contentEn = translate($validatedData['content'], 'en');
-        $post->category = $validatedData['category'];
 
         $post->save();
 
@@ -103,12 +103,15 @@ class PostController extends Controller
     {
         $validatedData = $request->validated();
 
-        $post->title = $validatedData['title'];
-        $post->titleJa = translate($validatedData['title'], 'ja');
-        $post->titleEn = translate($validatedData['title'], 'en');
-        $post->content = $validatedData['content'];
-        $post->contentJa = translate($validatedData['content'], 'ja');
-        $post->contentEn = translate($validatedData['content'], 'en');
+        $locale = session('locale');
+        $translateActive = $validatedData['translate-active'];
+        $titleField = $locale == 'ko' ? 'title' : 'title' . ucfirst($locale);
+        $contentField = $locale == 'ko' ? 'content' : 'content' . ucfirst($locale);
+
+        // 작성자의 세션 언어에 따른 제목과 내용을 저장한다
+        $post->$titleField = $translateActive ? translate($validatedData['title'], $locale) : $validatedData['title'];
+        $post->$contentField = $translateActive ? translate($validatedData['content'], $locale) : $validatedData['content'];
+
         $post->category = $validatedData['category'];
 
         $post->save();

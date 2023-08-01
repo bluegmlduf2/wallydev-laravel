@@ -32,22 +32,30 @@
             {{-- xss 방지하지 않은 내용 그대로 출력 --}}
             {!! old('content', $post->content ?? '') !!}
         </div>
-        {{-- 작성한 게시글 전송용 --}}
+        {{-- 작성한 게시글/번역체크여부 전송용 --}}
         <input type="hidden" name="content" id="content">
+        <input type="hidden" name="translate-active" id="translate-active">
 
         <div class="flex justify-between mt-3">
             <x-secondary-button onclick="location.href = '{{ URL::previous() ?? route('home') }}'">
                 {{ __('Cancel') }}
             </x-secondary-button>
-            <x-primary-button onclick="createOrUpdatePost('{{ $post->postId ?? null }}')">
-                {{ __('Confirm') }}
-            </x-primary-button>
+            <div class="flex items-center">
+                <x-toggle-button :active="empty($post->postId)">{{ __('SavingTranslation') }}</x-toggle-button>
+                <x-primary-button onclick="createOrUpdatePost('{{ $post->postId ?? null }}')">
+                    {{ __('Confirm') }}
+                </x-primary-button>
+            </div>
+        </div>
         </div>
     </form>
     <script>
         function createOrUpdatePost(postId) {
             const createPostForm = document.getElementById('createPostForm');
             document.getElementById('content').value = window.editor.getHTML();
+            document.getElementById('translate-active').value = Number(createPostForm.querySelector(
+                    '[name="toggle-active"]')
+                .checked);
 
             createPostForm.action = postId ? "{{ route('posts.update', $post->postId ?? '') }}" :
                 "{{ route('posts.store') }}";

@@ -28,6 +28,7 @@ class StorePostRequest extends FormRequest
             'title' => ['required', 'max:30'],
             'content' => [],
             'category' => ['required', 'in:javascript,php,vuejs,others,life'],
+            'translate-active' => ['required', 'boolean'],
         ];
     }
 }

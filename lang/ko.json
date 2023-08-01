@@ -713,5 +713,6 @@
     "Please Input :resource": ":resource(을)를 입력해주세요",
     "Please enter a :resource of at least :length characters": ":resource(을)를 :length자리 이상 입력해주세요",
     "Are you sure you want to delete this :resource?": "이 :resource(을)를 삭제 하시겠습니까?",
-    "CreateNew": "작성"
+    "CreateNew": "작성",
+    "SavingTranslation": "번역저장"
 }
