@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Log;
+
 function translate($text, $target)
 {
     try {
@@ -48,7 +51,9 @@ function translate($text, $target)
         }
 
         return $json['message']['result']['translatedText'];
-    } catch (Throwable) {
+    } catch (Throwable $e) {
+        Log::warning($e->getMessage());
+
         return $text;
     } finally {
         curl_close($ch);
