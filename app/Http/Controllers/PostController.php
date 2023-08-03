@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\DeletePostRequest;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\JsonLd;
 
 class PostController extends Controller
 {
@@ -16,6 +19,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        $this->makeIndexMetaTags();
+
         // 페이지타입
         $category = $request->segment(1);
 
@@ -76,6 +81,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->makePostMetaTags($post);
+
         $post->increment('postViewCount');
 
         return view('post.show', compact('post'));
@@ -141,5 +148,63 @@ class PostController extends Controller
 
         return redirect()->route('home', ["post" => $post->postId])
             ->with(["success-message" => $message]);
+    }
+
+    /**
+     * MakeIndexMetaTags
+     */
+    private function makeIndexMetaTags()
+    {
+        $title = config('app.name');
+        $description = 'Wally의 후쿠오카 생활과 개발이야기를 담고 있습니다';
+        $url = config('app.url');
+        $imageUrl = asset('storage/android-chrome-192x192.png');
+
+        SEOMeta::setTitle($title);
+        SEOMeta::setDescription($description);
+        SEOMeta::setCanonical($url);
+
+        OpenGraph::setTitle($title);
+        OpenGraph::setDescription($description);
+        OpenGraph::setUrl($url);
+        OpenGraph::addProperty('type', 'website');
+
+        JsonLd::setTitle($title);
+        JsonLd::setDescription($description);
+        JsonLd::addImage($imageUrl);
+    }
+
+    /**
+     * MakePostMetaTags
+     *
+     * @param  \App\Models\Post  $post
+     */
+    private function makePostMetaTags(Post $post)
+    {
+        $title = $post->title;
+        $content = $post->contentShort;
+        $category = $post->category;
+        $imageUrl = $post->imageUrl;
+        $locales = ['ja' => 'ja_jp', 'en' => 'en_us', 'ko' => 'ko_kr'];
+        $locale = $locales[session('locale')] ?? 'ko_kr';
+
+        SEOMeta::setTitle($title);
+        SEOMeta::setDescription($content);
+        SEOMeta::addMeta('article:published_time', $post->createdDate->toW3CString(), 'property');
+        SEOMeta::addMeta('article:section', $category, 'property');
+        SEOMeta::addKeyword([$category, 'key2', 'key3']); //TODO
+
+        OpenGraph::setDescription($content);
+        OpenGraph::setTitle($title);
+        OpenGraph::setUrl(route('posts.show', ["post" => $post->postId]));
+        OpenGraph::addProperty('type', 'article');
+        OpenGraph::addProperty('locale', $locale);
+        OpenGraph::addProperty('locale:alternate', array_values($locales));
+        OpenGraph::addImage($imageUrl, ['height' => 300, 'width' => 300]);
+
+        JsonLd::setTitle($title);
+        JsonLd::setDescription($content);
+        JsonLd::setType('Article');
+        JsonLd::addImage($imageUrl);
     }
 }

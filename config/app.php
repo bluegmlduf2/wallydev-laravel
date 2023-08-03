@@ -204,6 +204,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class, // META태그 생성 프로바이더
 
     ],
 
@@ -218,8 +219,12 @@ return [
     |
     */
 
+    // 퍼사드의 Aliias 추가
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'SEOMeta'       => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'OpenGraph'     => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'JsonLd'        => Artesaos\SEOTools\Facades\JsonLd::class,
     ])->toArray(),
 
 ];
