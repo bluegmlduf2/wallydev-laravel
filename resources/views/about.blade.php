@@ -7,8 +7,9 @@
         </x-slot>
         <div>
             <span>
-                Hello, I am wally yoon working as a programmer in Japan.<br>
-                I mainly use the language and framework below and I am interested<br><br>
+                Hello, I am Wally Yoon, working as a programmer in Japan<br>
+                I mainly use the languages and frameworks listed below, and I have a keen interest in them<br>
+                And This web page is built with Laravel 😀<br><br>
                 <ul class="list-disc ml-5">
                     <li>JAVASCRIPT</li>
                     <li>VUEJS</li>
