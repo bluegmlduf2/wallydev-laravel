@@ -32,6 +32,12 @@ const editor = editorId
                   formData.append("image", blob);
 
                   try {
+                      const maxSizeInBytes = 8 * 1024 * 1024; // 8MB
+                      if (blob.size > maxSizeInBytes)
+                          throw new Error(
+                              "이미지 파일의 크기가 8MB를 초과합니다. 작은 크기의 이미지를 업로드해주세요."
+                          );
+
                       const response = await fetch("/image", {
                           method: "POST",
                           body: formData,
@@ -50,7 +56,7 @@ const editor = editorId
 
                       return callback(data.url);
                   } catch (error) {
-                      alert("ERROR : ImageUpload");
+                      alert("ERROR ImageUpload : " + error.message);
                       console.error("Error:", error);
                   }
               },
