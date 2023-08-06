@@ -25,7 +25,7 @@ class StoreImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => ['required', 'image', 'file', 'mimes:jpeg,png,jpg', 'max:8192'], // 8MB 용량제한
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg'], // 8MB 용량제한
         ];
     }
 }
