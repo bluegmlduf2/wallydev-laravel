@@ -32,6 +32,10 @@ const editor = editorId
                   formData.append("image", blob);
 
                   try {
+                      document
+                          .getElementById("spinner")
+                          .classList.remove("hidden");
+
                       const maxSizeInBytes = 8 * 1024 * 1024; // 8MB
                       if (blob.size > maxSizeInBytes)
                           throw new Error(
@@ -58,6 +62,10 @@ const editor = editorId
                   } catch (error) {
                       alert("ERROR ImageUpload : " + error.message);
                       console.error("Error:", error);
+                  } finally {
+                      document
+                          .getElementById("spinner")
+                          .classList.add("hidden");
                   }
               },
           },
