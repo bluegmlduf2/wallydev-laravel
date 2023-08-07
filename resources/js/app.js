@@ -26,6 +26,7 @@ const editor = editorId
           initialEditType: "wysiwyg",
           previewStyle: "vertical",
           usageStatistics: false,
+          linkAttributes: { target: "_blank" }, // 링크 클릭시 새창으로 열기 
           hooks: {
               addImageBlobHook: async (blob, callback) => {
                   const formData = new FormData();
