@@ -18,7 +18,7 @@
                     class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm">
                     @foreach (['life', 'javascript', 'vuejs', 'php', 'others'] as $category)
                         <option value="{{ $category }}"
-                            {{ old('category', $post->category ?? 'life˝') === $category ? 'selected' : '' }}>
+                            {{ old('category', $post->category ?? 'life') === $category ? 'selected' : '' }}>
                             {{ strtoupper($category) }}
                         </option>
                     @endforeach
@@ -41,11 +41,14 @@
                 {{ __('Cancel') }}
             </x-secondary-button>
             <div class="flex items-center">
-                <x-toggle-button :active="empty($post->postId)">{{ __('SavingTranslation') }}</x-toggle-button>
+                <x-toggle-button :active="empty($post->postId)">{{ __('SaveTrans') }}</x-toggle-button>
                 <x-primary-button onclick="createOrUpdatePost('{{ $post->postId ?? null }}')">
                     {{ __('Confirm') }}
                 </x-primary-button>
             </div>
+        </div>
+        <div class="flex justify-end">
+            <x-input-error :messages="$errors->get('translate-active')" class="mt-2" />
         </div>
         </div>
     </form>
