@@ -25,6 +25,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
+    <!-- SEO -->
+    <meta name="google-site-verification" content="omPgIWqnBfqP7j0mgp3cWOcvTQodgpxCdUM8QvR87Wg" />
+    <meta name="naver-site-verification" content="0aedc057c577ca3d446182dda3f909b581ea718d" />
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
