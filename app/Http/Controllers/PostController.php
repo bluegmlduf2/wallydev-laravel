@@ -193,7 +193,7 @@ class PostController extends Controller
         SEOMeta::setDescription($content);
         SEOMeta::addMeta('article:published_time', $post->createdDate->toW3CString(), 'property');
         SEOMeta::addMeta('article:section', $category, 'property');
-        SEOMeta::addKeyword([$category, 'key2', 'key3']); //TODO
+        SEOMeta::addKeyword([$category]);
 
         OpenGraph::setDescription($content);
         OpenGraph::setTitle($title);
