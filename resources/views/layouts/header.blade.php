@@ -15,8 +15,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Icon -->
-    <link rel="shortcut icon" href="{{ asset('storage/icon/favicon-32x32.png') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('storage/icon/favicon-32x32.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('storage/icon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/icon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/icon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('storage/icon/site.webmanifest') }}">
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
