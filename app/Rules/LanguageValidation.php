@@ -16,7 +16,7 @@ class LanguageValidation implements Rule
     public function passes($attribute, $value)
     {
         // 게시물 수정시 설정언어가 한글이고 번역모드로 저장시 에러 발생
-        return $value && session('locale') !== 'ko';
+        return !($value && session('locale') === 'ko');
     }
 
     /**
