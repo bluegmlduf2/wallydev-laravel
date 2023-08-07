@@ -53,3 +53,7 @@
     line-height: 22px !important;
     font-size: 14px !important;
 }
+
+.toastui-editor-contents p {
+    margin: 0 !important;
+}
