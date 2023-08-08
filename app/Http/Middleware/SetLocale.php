@@ -18,7 +18,7 @@ class SetLocale
     public function handle(Request $request, Closure $next)
     {
         $acceptLangguage = $request->server->get('HTTP_ACCEPT_LANGUAGE'); // Header의 Accept_language 취득
-        $lang = session('locale') ?? locale_accept_from_http($acceptLangguage); // Accept_language의 언어들중에서 최우선 순위의 언어 locale취득
+        $lang = session('locale') ?? substr(locale_accept_from_http($acceptLangguage), 0, 2); // Accept_language의 언어들중에서 최우선 순위의 언어 locale취득
 
         if (in_array($lang, ['en', 'ko', 'ja'])) {
             session()->put('locale', $lang);
