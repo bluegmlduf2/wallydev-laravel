@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
+use Carbon\Carbon;
 
-class Post extends Model
+class Post extends Model implements Sitemapable
 {
 
     protected $table = 'posts';
@@ -84,5 +87,14 @@ class Post extends Model
                 }
             },
         );
+    }
+
+    // Sitemap.xml을 생성하기 위해 추가
+    public function toSitemapTag(): Url | string | array
+    {
+        return Url::create(route('posts.show', $this))
+            ->setLastModificationDate(Carbon::create($this->updatedDate))
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+            ->setPriority(0.8); // 우선순위 1이 최대치
     }
 }
