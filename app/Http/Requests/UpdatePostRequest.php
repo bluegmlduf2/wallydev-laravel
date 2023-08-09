@@ -27,7 +27,7 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:30'],
+            'title' => ['required', 'max:50'],
             'content' => [],
             'category' => ['required', 'in:javascript,php,vuejs,others,life'],
             'translate-active' => ['required', 'boolean', new LanguageValidation],
