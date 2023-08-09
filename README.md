@@ -13,6 +13,7 @@ This application is a personal weblog
 -   Allowing administrator users to manage posts
 -   Checking the system log with Slack
 -   Adding Metatags for SEO
+-   Create Sitemap.xml dynamically
 
 ## Installation & Usage
 
@@ -35,3 +36,5 @@ Required Libraries:
 -   `npm install`
 -   `npm run dev`
 -   `php artisan serve`
+-   `php artisan sitemap:generate` Run only if you create sitemap.xml
+
