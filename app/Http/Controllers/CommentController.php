@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CommentMail;
 
 class CommentController extends Controller
 {
@@ -26,6 +28,9 @@ class CommentController extends Controller
         $comment->fill($validatedDataFormatted);
         $comment->post()->associate($post); // 연결된 게시물 설정
         $comment->save();
+
+        // 관리자에게 댓글내용 보내기
+        Mail::to($request->user())->locale(session('locale'))->send(new CommentMail($comment, $post));
 
         $message = __('The :resource was created!', ['resource' => __('validation.attributes.comment')]);
 
