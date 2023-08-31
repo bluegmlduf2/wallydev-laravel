@@ -14,6 +14,7 @@ This application is a personal weblog
 -   Checking the system log with Slack
 -   Adding Metatags for SEO
 -   Create Sitemap.xml dynamically
+-   Sending an Email to the Administrator When a New Comment is Posted (Google SMTP)
 
 ## Installation & Usage
 
