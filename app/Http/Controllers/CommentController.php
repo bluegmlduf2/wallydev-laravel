@@ -30,7 +30,7 @@ class CommentController extends Controller
         $comment->save();
 
         // 관리자에게 댓글내용 보내기
-        Mail::to($request->user())->locale(session('locale'))->send(new CommentMail($comment, $post));
+        Mail::send(new CommentMail($comment, $post));
 
         $message = __('The :resource was created!', ['resource' => __('validation.attributes.comment')]);
 
@@ -59,6 +59,9 @@ class CommentController extends Controller
             $comment->comment = $inputComment;
             $comment->save();
         }
+
+        // 관리자에게 댓글내용 보내기
+        Mail::send(new CommentMail($comment, $post));
 
         return redirect()->route('posts.show', ["post" => $post->postId])
             ->with($message);

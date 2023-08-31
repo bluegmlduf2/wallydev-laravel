@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 
 class CommentMail extends Mailable
 {
@@ -58,6 +59,7 @@ class CommentMail extends Mailable
      */
     public function content()
     {
+        // Not in use
         return new Content(
             view: 'email.comment',
             // text: 'emails.orders.shipped-text'
@@ -66,6 +68,15 @@ class CommentMail extends Mailable
                 'post' => $this->post,
             ],
         );
+    }
+
+    public function build()
+    {
+        $adminUser = User::where('is_admin', true)->first();
+
+        return $this->to($adminUser)
+            ->locale(session('locale'))
+            ->view('emails.comment'); // 뷰 파일을 설정해야 합니다.
     }
 
     /**
