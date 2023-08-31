@@ -11,5 +11,5 @@
     <b>Written at : </b> {{ $comment->updatedDate }}
 </p>
 <p>
-    <a href="{{ route('home') }}"> Go to Website</a>
+    <a href="{{ route('posts.show', ["post" => $post->postId]) }}">Check the Comment</a>
 </p>
