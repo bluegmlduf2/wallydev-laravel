@@ -134,6 +134,7 @@ return [
 
     'translator_client_id' => env('TRANSLATOR_CLIENT_ID'),
     'translator_client_secret' => env('TRANSLATOR_CLIENT_SECRET'),
+    'mail_username' => env('MAIL_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------

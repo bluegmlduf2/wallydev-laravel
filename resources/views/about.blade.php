@@ -83,7 +83,7 @@
                     </defs>
                 </svg>
             </a>
-            <a href="mailto:raktengcp@gmail.com" target="_blank">
+            <a href="mailto:{{ config('app.mail_username') }}" target="_blank">
                 <svg class="h-10 w-10 cursor-pointer" role="img" viewBox="0 0 512 512">
                     <rect width="512" height="512" rx="15%" fill="#ffffff" />
                     <path d="M158 391v-142l-82-63V361q0 30 30 30" fill="#4285f4" />

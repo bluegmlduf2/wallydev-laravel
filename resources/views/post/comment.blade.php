@@ -15,8 +15,10 @@
                 fill="#292D32" />
         </svg>
     </div>
-    <form id="comment-wrapper" class="flex space-x-2" action="{{ route('comments.store', ['post' => $post->postId]) }}"
-        style="{{ $errors->hasAny(['name', 'password', 'comment']) ? 'display: flex' : 'display: none' }}" method="post">
+    <form id="comment-wrapper" class="flex space-x-2" onsubmit="disableSaveButton()"
+        action="{{ route('comments.store', ['post' => $post->postId]) }}"
+        style="{{ $errors->hasAny(['name', 'password', 'comment']) ? 'display: flex' : 'display: none' }}"
+        method="post">
         @csrf
         <div class="flex flex-col space-y-2 w-3/12">
             <x-text-input id="name" type="text" name="name" :value="old('name')"
@@ -35,7 +37,7 @@
             <x-input-error :messages="$errors->get('comment')" class="mt-2" />
         </div>
         <div class="flex w-2/12 md:w-1/12">
-            <x-primary-button class="w-full justify-center">
+            <x-primary-button id="comment-confirm-button" class="w-full justify-center">
                 {{ __('Confirm') }}
             </x-primary-button>
         </div>
@@ -97,12 +99,6 @@
     </form>
 @endforeach
 <script>
-    function clickSaveComment(commentId) {
-        // const form = document.getElementById('update-comment-form');
-        // form.action = `/posts/{{ $post->postId }}/${this.commentId}`;
-        // form.submit();
-    }
-
     function toggleComment(isOpen) {
         const comment = document.getElementById('comment-wrapper');
         const closeComment = document.getElementById('close-comment-wrapper');
@@ -171,5 +167,10 @@
         commentWrapperObject.deleteCommentButton.style.display = 'none';
         commentWrapperObject.editCommentButton.style.display = 'block';
         commentWrapperObject.cancelCommentButton.style.display = 'none';
+    }
+
+    function disableSaveButton() {
+        // 저장을 연손으로 누르면 중복으로 작성되는거 방지 
+        document.getElementById('comment-confirm-button').disabled = true;
     }
 </script>
