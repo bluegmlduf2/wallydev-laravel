@@ -59,10 +59,9 @@ class CommentController extends Controller
             $comment->comment = $inputComment;
             $comment->save();
         }
-        sleep(3); // 1초 동안 대기
 
         // 관리자에게 댓글내용 보내기
-        // Mail::send(new CommentMail($comment, $post));
+        Mail::send(new CommentMail($comment, $post));
 
         return redirect()->route('posts.show', ["post" => $post->postId])
             ->with($message);
