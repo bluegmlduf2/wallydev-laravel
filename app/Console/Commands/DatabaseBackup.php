@@ -38,14 +38,14 @@ class DatabaseBackup extends Command
     {
         $fileName = Carbon::now()->format("Ymd-His") . "-tables.sql";
         $filePath = storage_path('backup/') . $fileName;
-        $user = env("DB_USERNAME");
-        $password = env("DB_PASSWORD");
-        $host = env("DB_HOST");
-        $database = env("DB_DATABASE");
+        $connection = config('database.default');
+        $user = config('database.connections.' . $connection . '.username');
+        $password = config('database.connections.' . $connection . '.password');
+        $host = config('database.connections.' . $connection . '.host');
+        $database = config('database.connections.' . $connection . '.database');
 
-        // 아래의 예제는 $password 노출되어서 안됨
-        // $command = "mysqldump -u $user -p$password --host $host $database > $filePath";
-        $command = "mysqldump --login-path=$user --host=$host $database > $filePath";
+        $command = "mysqldump -u $user -p$password --host $host $database > $filePath";
+        // $command = "mysqldump --login-path=$user --host=$host $database > $filePath";
 
         $output = null;
         exec($command, $output, $error);
