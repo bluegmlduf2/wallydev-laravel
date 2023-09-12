@@ -40,12 +40,12 @@ class DatabaseBackup extends Command
         $filePath = storage_path('backup/') . $fileName;
         $connection = config('database.default');
         $user = config('database.connections.' . $connection . '.username');
-        $password = str_replace(['"', "'"], "'", config('database.connections.' . $connection . '.password'));
+        $password = config('database.connections.' . $connection . '.password');
         $host = config('database.connections.' . $connection . '.host');
         $database = config('database.connections.' . $connection . '.database');
 
-        $command = "mysqldump -u $user -p$password --host $host $database > $filePath";
-        // $command = "mysqldump --login-path=$user --host=$host $database > $filePath";
+        // $command = "mysqldump -u $user -p$password --host $host $database > $filePath";
+        $command = "mysqldump --login-path=$user --host=$host $database > $filePath";
 
         $output = null;
         exec($command, $output, $error);
