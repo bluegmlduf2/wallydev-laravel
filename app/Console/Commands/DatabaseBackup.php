@@ -40,7 +40,7 @@ class DatabaseBackup extends Command
         $filePath = storage_path('backup/') . $fileName;
         $connection = config('database.default');
         $user = config('database.connections.' . $connection . '.username');
-        $password = str_replace(['"', "'"], '', config('database.connections.' . $connection . '.password'));
+        $password = str_replace(['"', "'"], "'", config('database.connections.' . $connection . '.password'));
         $host = config('database.connections.' . $connection . '.host');
         $database = config('database.connections.' . $connection . '.database');
 
