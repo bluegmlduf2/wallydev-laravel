@@ -14,6 +14,7 @@ This application is a personal weblog
 -   Checking the system log with Slack
 -   Adding Metatags for SEO
 -   Create Sitemap.xml dynamically
+-   Automatic Database Backup
 -   Sending an Email to the Administrator When a New Comment is Posted (Google SMTP)
 
 ## Installation & Usage
@@ -22,6 +23,7 @@ Required Libraries:
 
 -   Laravel v9.52
 -   PHP v8.0.2
+-   Mysql 8.0.3
 -   [Papago API](https://developers.naver.com/docs/papago/papago-nmt-overview.md)  
      After registering for the Papago translation API, get the app_key issued, and enter the issued key, TRANSLATOR_CLIENT_ID, and TRANSLATOR_CLIENT_SECRET in the .env file
 -   [Slack API](https://api.slack.com/)  
@@ -38,4 +40,5 @@ Required Libraries:
 -   `npm run dev`
 -   `php artisan serve`
 -   `php artisan sitemap:generate` Run only if you create sitemap.xml
+-   `php artisan database:backup` Run only if you  manually back up a database
 
