@@ -46,8 +46,8 @@ class DatabaseBackup extends Command
         $host = config('database.connections.' . $connection . '.host');
         $database = config('database.connections.' . $connection . '.database');
 
-        $command = "mysqldump -u $user -p'$password' --host $host $database > $filePath"; // 배포 서버용
-        // $command = "sudo mysqldump -u $user -p$password --host $host $database > $filePath"; // LOCAL 테스트용
+        // $command = "mysqldump -u $user -p'$password' --host $host $database > $filePath"; // 배포 서버용
+        $command = "sudo mysqldump -u $user -p$password --host $host $database > $filePath"; // LOCAL 테스트용
 
         $output = null;
         exec($command, $output, $error);
@@ -57,7 +57,7 @@ class DatabaseBackup extends Command
             Log::warning("Database Backup Failed. ERROR CODE : " . $error);
         }
 
-        if (file_exists($filePath)) {
+        if (file_exists($filePath) && config('filesystems.disks.s3.bucket')) {
             // SQL 파일이 존재하면 Illuminate\Http\File 객체로 반환
             $file = new File($filePath);
 
