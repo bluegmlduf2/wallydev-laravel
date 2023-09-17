@@ -46,8 +46,8 @@ class DatabaseBackup extends Command
         $host = config('database.connections.' . $connection . '.host');
         $database = config('database.connections.' . $connection . '.database');
 
-        // $command = "mysqldump -u $user -p'$password' --host $host $database > $filePath"; // 배포 서버용
-        $command = "sudo mysqldump -u $user -p$password --host $host $database > $filePath"; // LOCAL 테스트용
+        $command = "mysqldump -u $user -p'$password' --host $host $database > $filePath"; // 배포 서버용
+        // $command = "sudo mysqldump -u $user -p$password --host $host $database > $filePath"; // LOCAL 테스트용
 
         $output = null;
         exec($command, $output, $error);
