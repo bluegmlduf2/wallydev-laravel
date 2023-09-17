@@ -14,7 +14,7 @@ This application is a personal weblog
 -   Checking the system log with Slack
 -   Adding Metatags for SEO
 -   Create Sitemap.xml dynamically
--   Automatic Database Backup
+-   Automatic Database Backup (Local & AWS S3)
 -   Sending an Email to the Administrator When a New Comment is Posted (Google SMTP)
 
 ## Installation & Usage
@@ -28,6 +28,8 @@ Required Libraries:
      After registering for the Papago translation API, get the app_key issued, and enter the issued key, TRANSLATOR_CLIENT_ID, and TRANSLATOR_CLIENT_SECRET in the .env file
 -   [Slack API](https://api.slack.com/)  
     After registering the Incoming Webhooks of the Slack API, enter the app_key issued in the LOG_SLACK_WEBHOOK_URL of the .env file
+-   AWS S3  
+    By default, you can back up the database locally. When you input AWS S3 information in the env file, it also becomes possible to back up the database to S3.
 
 ## Command
 
