@@ -19,11 +19,17 @@
                 <x-nav-link :href="route('javascript')" :active="request()->routeIs('javascript')">
                     {{ __('JAVASCRIPT') }}
                 </x-nav-link>
+                <x-nav-link :href="route('css')" :active="request()->routeIs('css')">
+                    {{ __('CSS') }}
+                </x-nav-link>
                 <x-nav-link :href="route('php')" :active="request()->routeIs('php')">
                     {{ __('PHP') }}
                 </x-nav-link>
                 <x-nav-link :href="route('vuejs')" :active="request()->routeIs('vuejs')">
                     {{ __('VUEJS') }}
+                </x-nav-link>
+                <x-nav-link :href="route('network')" :active="request()->routeIs('network')">
+                    {{ __('NETWORK') }}
                 </x-nav-link>
                 <x-nav-link :href="route('others')" :active="request()->routeIs('others')">
                     {{ __('OTHERS') }}
@@ -128,11 +134,17 @@
             <x-responsive-nav-link :href="route('javascript')" :active="request()->routeIs('javascript')">
                 {{ __('JAVASCRIPT') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('css')" :active="request()->routeIs('css')">
+                {{ __('CSS') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('php')" :active="request()->routeIs('php')">
                 {{ __('PHP') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('vuejs')" :active="request()->routeIs('vuejs')">
                 {{ __('VUEJS') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('network')" :active="request()->routeIs('network')">
+                {{ __('NETWORK') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('others')" :active="request()->routeIs('others')">
                 {{ __('OTHERS') }}

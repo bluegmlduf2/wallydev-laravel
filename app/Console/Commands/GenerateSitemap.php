@@ -33,7 +33,7 @@ class GenerateSitemap extends Command
     {
         $sitemap = Sitemap::create();
 
-        $mainPage = array('home', 'javascript', 'php', 'vuejs', 'others', 'life');
+        $mainPage = array('home', 'javascript', 'css', 'php', 'vuejs', 'network', 'others', 'life');
 
         // 메인페이지의 sitemap생성
         foreach ($mainPage as $routeName) {

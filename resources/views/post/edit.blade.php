@@ -16,7 +16,7 @@
                     spellcheck="false" />
                 <select name="category" id="category"
                     class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm">
-                    @foreach (['life', 'javascript', 'vuejs', 'php', 'others'] as $category)
+                    @foreach (['life', 'javascript', 'css', 'vuejs', 'php', 'network', 'others'] as $category)
                         <option value="{{ $category }}"
                             {{ old('category', $post->category ?? 'life') === $category ? 'selected' : '' }}>
                             {{ strtoupper($category) }}

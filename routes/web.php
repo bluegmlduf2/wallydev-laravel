@@ -28,8 +28,10 @@ Route::group(['middleware' => 'set.locale'], function () {
     // 네이베이션 페이지 라우팅 (+라우팅명)
     Route::get('/', [PostController::class, 'index'])->name('home');
     Route::get('/javascript', [PostController::class, 'index'])->name('javascript');
+    Route::get('/css', [PostController::class, 'index'])->name('css');
     Route::get('/php', [PostController::class, 'index'])->name('php');
     Route::get('/vuejs', [PostController::class, 'index'])->name('vuejs');
+    Route::get('/network', [PostController::class, 'index'])->name('network');
     Route::get('/others', [PostController::class, 'index'])->name('others');
     Route::get('/life', [PostController::class, 'index'])->name('life');
     Route::view('/about', 'about')->name('about');

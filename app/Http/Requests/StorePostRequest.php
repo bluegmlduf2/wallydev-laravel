@@ -27,7 +27,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required', 'max:50'],
             'content' => [],
-            'category' => ['required', 'in:javascript,php,vuejs,others,life'],
+            'category' => ['required', 'in:javascript,css,php,vuejs,network,others,life'],
             'translate-active' => ['required', 'boolean'],
         ];
     }
