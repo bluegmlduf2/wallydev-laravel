@@ -24,8 +24,8 @@ Required Libraries:
 -   Laravel v9.52
 -   PHP v8.0.2
 -   Mysql 8.0.3
--   [Papago API](https://developers.naver.com/docs/papago/papago-nmt-overview.md)  
-     After registering for the Papago translation API, get the app_key issued, and enter the issued key, TRANSLATOR_CLIENT_ID, and TRANSLATOR_CLIENT_SECRET in the .env file
+-   [Deepl API](https://www.deepl.com/)  
+     After registering for the Deepl translation API, get the app_key issued, and enter the issued key, TRANSLATOR_API_KEY in the .env file
 -   [Slack API](https://api.slack.com/)  
     After registering the Incoming Webhooks of the Slack API, enter the app_key issued in the LOG_SLACK_WEBHOOK_URL of the .env file
 -   AWS S3  
