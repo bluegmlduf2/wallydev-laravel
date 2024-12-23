@@ -26,6 +26,9 @@ class RecaptchaValidation implements Rule
                     'response' => $value,
                 ],
             ]);
+            Log::warning('reCAPTCHA response value: ' . $value);
+            Log::warning('reCAPTCHA secret key: ' . env('RECAPTCHA_SECRET_KEY'));
+            Log::warning(env('RECAPTCHA_SECRET_KEY'));
             Log::warning($response->getBody()->getContents());
 
             $result = json_decode($response->getBody()->getContents(), true);
