@@ -26,11 +26,10 @@ class RecaptchaValidation implements Rule
                     'response' => $value,
                 ],
             ]);
-            Log::warning($response);
-            Log::warning($response->getBody());
             Log::warning($response->getBody()->getContents());
+
             $result = json_decode($response->getBody()->getContents(), true);
-            Log::warning($result);
+            Log::warning(json_encode($result, JSON_PRETTY_PRINT));
 
             // score가 1에 가까울수록 사람에 가깝다
             return isset($result['success']) && $result['success'] && $result['score'] > 0.5;
