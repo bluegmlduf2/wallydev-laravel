@@ -22,17 +22,12 @@ class RecaptchaValidation implements Rule
             // 클라이언트에서 보낸 토큰을 구글캡챠에 전송해서 검증한다
             $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
                 'form_params' => [
-                    'secret' => env('RECAPTCHA_SECRET_KEY'),
+                    'secret' => config('app.recaptcha_secret_key'),
                     'response' => $value,
                 ],
             ]);
-            Log::warning('reCAPTCHA response value: ' . $value);
-            Log::warning('reCAPTCHA secret key: ' . env('RECAPTCHA_SECRET_KEY'));
-            Log::warning(env('RECAPTCHA_SECRET_KEY'));
-            Log::warning($response->getBody()->getContents());
 
             $result = json_decode($response->getBody()->getContents(), true);
-            Log::warning(json_encode($result, JSON_PRETTY_PRINT));
 
             // score가 1에 가까울수록 사람에 가깝다
             return isset($result['success']) && $result['success'] && $result['score'] > 0.5;
