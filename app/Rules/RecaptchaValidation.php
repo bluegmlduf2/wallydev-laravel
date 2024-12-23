@@ -26,8 +26,8 @@ class RecaptchaValidation implements Rule
                     'response' => $value,
                 ],
             ]);
-            Log::warning($$response);
-            Log::warning($$response->getBody());
+            Log::warning($response);
+            Log::warning($response->getBody());
             Log::warning($response->getBody()->getContents());
             $result = json_decode($response->getBody()->getContents(), true);
             Log::warning($result);
