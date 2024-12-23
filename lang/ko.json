@@ -715,5 +715,6 @@
     "Are you sure you want to delete this :resource?": "이 :resource(을)를 삭제 하시겠습니까?",
     "CreateNew": "작성",
     "SaveTrans": "번역저장",
-    "Translation saving is not possible when the language setting is in Korean.": "설정언어가 한글인 경우 번역저장이 불가능합니다."
+    "Translation saving is not possible when the language setting is in Korean.": "설정언어가 한글인 경우 번역저장이 불가능합니다.",
+    "ReCAPTCHA verification failed.": "ReCAPTCHA 인증에 실패했습니다"
 }

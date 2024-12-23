@@ -30,6 +30,7 @@ Required Libraries:
     After registering the Incoming Webhooks of the Slack API, enter the app_key issued in the LOG_SLACK_WEBHOOK_URL of the .env file
 -   AWS S3  
     By default, you can back up the database locally. When you input AWS S3 information in the env file, it also becomes possible to back up the database to S3.
+-   reCAPTCHA v3
 
 ## Command
 
@@ -42,5 +43,4 @@ Required Libraries:
 -   `npm run dev`
 -   `php artisan serve`
 -   `php artisan sitemap:generate` Run only if you create sitemap.xml
--   `php artisan database:backup` Run only if you  manually back up a database
-
+-   `php artisan database:backup` Run only if you manually back up a database

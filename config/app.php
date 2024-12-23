@@ -134,6 +134,8 @@ return [
 
     'translator_api_key' => env('TRANSLATOR_API_KEY'),
     'mail_username' => env('MAIL_USERNAME'),
+    'recaptcha_site_key' => env('RECAPTCHA_SITE_KEY'),
+    'recaptcha_secret_key' => env('RECAPTCHA_SECRET_KEY'),
 
     /*
     |--------------------------------------------------------------------------

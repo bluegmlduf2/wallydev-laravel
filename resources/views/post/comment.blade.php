@@ -15,7 +15,7 @@
                 fill="#292D32" />
         </svg>
     </div>
-    <form id="comment-wrapper" class="flex space-x-2" onsubmit="disableSaveButton()"
+    <form id="comment-wrapper" class="flex space-x-2" onsubmit="handleSubmit(event)"
         action="{{ route('comments.store', ['post' => $post->postId]) }}"
         style="{{ $errors->hasAny(['name', 'password', 'comment']) ? 'display: flex' : 'display: none' }}"
         method="post">
@@ -28,6 +28,7 @@
                 placeholder="{{ __('Please enter a :resource of at least :length characters', ['resource' => __('Password'), 'length' => '4']) }}"
                 autocomplete="current-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('recaptcha-token')" class="mt-2" />
         </div>
         <div class="flex flex-col w-7/12 md:w-full">
             <x-text-area-input id="comment" :name="'comment'" :value="old('comment')" spellcheck="false"
@@ -41,6 +42,7 @@
                 {{ __('Confirm') }}
             </x-primary-button>
         </div>
+        <x-text-input type="hidden" id="recaptcha-token" name="recaptcha-token"/>
     </form>
 </div>
 @foreach ($post->comments as $comment)
@@ -169,8 +171,21 @@
         commentWrapperObject.cancelCommentButton.style.display = 'none';
     }
 
-    function disableSaveButton() {
+    function handleSubmit(e) {
+        // 기본 제출이벤트 정지
+        e.preventDefault();
         // 저장을 연손으로 누르면 중복으로 작성되는거 방지 
         document.getElementById('comment-confirm-button').disabled = true;
+
+        // 리캡챠 동작후 문제없으면 토큰을 반환
+        grecaptcha.ready(function() {
+          grecaptcha.execute("{{ config('app.recaptcha_site_key') }}", {action: 'submit'}).then(function(token) {
+            // 생성된 토큰을 숨겨진 input 필드에 설정
+            document.getElementById('recaptcha-token').value = token;
+
+            // 댓글등록
+            document.getElementById('comment-wrapper').submit();
+          });
+        });
     }
 </script>

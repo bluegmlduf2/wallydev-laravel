@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
+use App\Rules\RecaptchaValidation;
+
 class StoreCommentRequest extends FormRequest
 {
     /**
@@ -28,6 +30,7 @@ class StoreCommentRequest extends FormRequest
             'name' => ['required', 'max:15'],
             'password' => ['required', Password::min(4)],
             'comment' => ['required'],
+            'recaptcha-token' => ['required',new RecaptchaValidation],
         ];
     }
 }

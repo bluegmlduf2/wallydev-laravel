@@ -743,5 +743,6 @@
     "Are you sure you want to delete this :resource?": "この:resourceを削除しますか?",
     "CreateNew": "作成",
     "SaveTrans": "翻訳保存",
-    "Translation saving is not possible when the language setting is in Korean.": "言語設定が韓国語の場合、翻訳の保存はできません。"
+    "Translation saving is not possible when the language setting is in Korean.": "言語設定が韓国語の場合、翻訳の保存はできません。",
+    "ReCAPTCHA verification failed.": "ReCAPTCHAの認証に失敗しました。"
 }
